@@ -8,6 +8,8 @@ on:
       - closed
       - assigned
       - opened
+  schedule:
+    - cron: "0/5 * * * *"
 
 jobs:
   run-github-actions:
