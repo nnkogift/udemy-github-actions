@@ -2,19 +2,22 @@ name: Actions Workflow
 
 
 on:
-  push:
   pull_request:
     types:
       - closed
       - assigned
-      - opened
-      - reopened
-
+    branches:
+      - main
+  repository_dispatch:
+    types:
+      - build
 
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: printing repository dispatch client payload
+        run: echo ${{github.events.client_payload.name}}
       - name: List files
         run: |
           pwd
